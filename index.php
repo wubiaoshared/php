@@ -21,54 +21,34 @@ include_once("./url.php")
 $today=date("Y-m-d",time());
 $tomorrow=date("Y-m-d",strtotime("tomorrow"));
 $yesterday=date("Y-m-d",strtotime("yesterday"));
-login();
 $todayin=getDomains("in",$today);
 $tomorrowin=getDomains("in",$tomorrow);
 $todayorg=getDomains("org",$today);	
-echo "<table class=\"table table-striped \"><th>pending date= {$today} .in</th><th>google site</th> <th>open archive</th>";
+function show($domainarr,$date){
+	echo "<table class=\"table table-striped \"><th>pending date= {$date} </th><th>google site</th> <th>open archive</th><th>open screen</th>";
 
-foreach ($todayin as $key => $domain) {
-    
-    echo "
-              <tr>
-                  <td><a href=\"https://www.google.com/?gws_rd=ssl#q=site:".$domain."\" target=\"_blank\">".$domain."</a></td>
-                  <td><a href=\"https://www.google.com/?gws_rd=ssl#q=site:".$domain."\" target=\"_blank\">"."查看site结果"."</a></td>
-                  <td><a href=\"https://web.archive.org/web/*/http://".$domain."\" target=\"_blank\">"."查看archive结果"."</a></td>
-                </tr>";
-          
-  }
-echo "</table>";
+	foreach ($domainarr as $key => $domain) {
+	    
+	    echo"
+	          <tr>
+	              <td><a href=\"https://www.google.com/?gws_rd=ssl#q=site:".$domain."\" target=\"_blank\">".$domain."</a></td>
+	              <td><a href=\"https://www.google.com/?gws_rd=ssl#q=site:".$domain."\" target=\"_blank\">"."查看site结果"."</a></td>
+	              <td><a href=\"https://web.archive.org/web/*/http://".$domain."\" target=\"_blank\">"."查看archive结果"."</a></td>
+	              <td><a href=\"http://www.screenshots.com/search/?q=".$domain."\" target=\"_blank\">"."查看screen结果"."</a></td>
+	            
+	           </tr>";
+	          
+	  }
+	echo "</table>";
 
-echo "<table class=\"table table-striped\"><th>pending date= {$tomorrow} .in</th><th>google site</th> <th>open archive</th>";
+	
 
-foreach ($todayin as $key => $domain) {
-    
-    echo "
-    
-              <tr>
-                  <td><a href=\"https://www.google.com/?gws_rd=ssl#q=site:".$domain."\" target=\"_blank\">".$domain."</a></td>
-                  <td><a href=\"https://www.google.com/?gws_rd=ssl#q=site:".$domain."\" target=\"_blank\">"."查看site结果"."</a></td>
-                  <td><a href=\"https://web.archive.org/web/*/http://".$domain."\" target=\"_blank\">"."查看archive结果"."</a></td>
-                </tr>";
-          
-  }
-echo "</table>";
+}
+login();
+show($todayin,$today);
+show($tomorrowin,$tomorrow);
 
-echo "<table class=\"table table-striped\"><th>pending date= {$today} .org</th><th>google site</th> <th>open archive</th>";
 
-foreach ($todayorg as $key => $domain) {
-    
-    echo "
-    
-              <tr>
-                  <td><a href=\"https://www.google.com/?gws_rd=ssl#q=site:".$domain."\" target=\"_blank\">".$domain."</a></td>
-                  <td><a href=\"https://www.google.com/?gws_rd=ssl#q=site:".$domain."\" target=\"_blank\">"."查看site结果"."</a></td>
-                  <td><a href=\"https://web.archive.org/web/*/http://".$domain."\" target=\"_blank\">"."查看archive结果"."</a></td>
-                </tr>";
-          
-  }
-echo "</table>";
-  
  ?>
 
 

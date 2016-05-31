@@ -132,8 +132,6 @@ function getDomains($suffix,$date){
 		
 	}
 	
-	
-
 
 }
 
